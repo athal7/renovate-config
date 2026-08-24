@@ -1,0 +1,25 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": "Shared Renovate policy for repositories owned by athal7",
+  "extends": ["config:recommended"],
+  "timezone": "America/Chicago",
+  "schedule": ["before 6am on monday"],
+  "dependencyDashboard": true,
+  "minimumReleaseAge": "3 days",
+  "packageRules": [
+    {
+      "description": "Group and automerge stable minor and patch updates",
+      "matchUpdateTypes": ["minor", "patch"],
+      "matchCurrentVersion": "!/^0/",
+      "groupName": "{{manager}} stable non-major dependencies",
+      "automerge": true,
+      "automergeType": "pr"
+    },
+    {
+      "description": "Group pre-1.0 minor and patch updates for review",
+      "matchUpdateTypes": ["minor", "patch"],
+      "matchCurrentVersion": "/^0/",
+      "groupName": "{{manager}} pre-1.0 non-major dependencies"
+    }
+  ]
+}
